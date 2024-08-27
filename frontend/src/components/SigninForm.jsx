@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import userAtom from "../atoms/userAtom.js";
+import LinearProgress from "@mui/material/LinearProgress";
 
 function SigninForm() {
   const [inputs, setInputs] = useState({
@@ -10,12 +11,13 @@ function SigninForm() {
     email: "",
     password: "",
   });
+  const [load, setLoad] = useState(false);
 
   const setUser = useSetRecoilState(userAtom);
 
   const handleSignup = async (e) => {
-    console.log(inputs);
     e.preventDefault();
+    setLoad(true);
     try {
       const res = await fetch("/api/users/signup", {
         method: "POST",
@@ -29,12 +31,14 @@ function SigninForm() {
       console.log(data);
 
       if (data.error) {
+        setLoad(false);
         alert(data.error);
         return;
       }
 
       localStorage.setItem("user-threads", JSON.stringify(data));
       setUser(data);
+      setLoad(false);
     } catch (error) {
       console.log(error);
     }
@@ -46,6 +50,7 @@ function SigninForm() {
         <h1 className="col-6 offset-2 text-3xl font-semibold">
           SignUp On Threads
         </h1>
+        {load && <LinearProgress color="inherit" />}
         <br />
         <br />
         <br />

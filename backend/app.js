@@ -16,9 +16,9 @@ const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
 
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: "dmccunmzi",
+  api_key: "458644426168269",
+  api_secret: "5P32bfD5O5InlQNo4C7FJvUAmU0",
 });
 
 app.use(express.json({ limit: "50mb" })); // To parse JSON data in the req.body
