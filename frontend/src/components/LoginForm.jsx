@@ -2,17 +2,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import userAtom from "../atoms/userAtom.js";
+import Loader from "./Loader.jsx";
 
 function LoginForm() {
   const [inputs, setInputs] = useState({
     username: "",
     password: "",
   });
+  const [load, setLoad] = useState(false);
 
   const setUser = useSetRecoilState(userAtom);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoad(true);
     try {
       const res = await fetch("/api/users/login", {
         method: "POST",
@@ -25,12 +28,14 @@ function LoginForm() {
       const data = await res.json();
 
       if (data.error) {
+        setLoad(false);
         alert(data.error);
         return;
       }
 
       localStorage.setItem("user-threads", JSON.stringify(data));
       setUser(data);
+      setLoad(false);
     } catch (error) {
       console.log(error);
     }
@@ -89,7 +94,7 @@ function LoginForm() {
             <br />
 
             <button className="btn btn-dark" onClick={() => handleLogin(event)}>
-              Log-In
+              {load ? <Loader /> : "Log-in"}
             </button>
           </form>
         </div>

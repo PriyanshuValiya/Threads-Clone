@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import userAtom from "../atoms/userAtom.js";
-import LinearProgress from "@mui/material/LinearProgress";
+import Loader from "./Loader.jsx";
 
 function SigninForm() {
   const [inputs, setInputs] = useState({
@@ -50,7 +50,6 @@ function SigninForm() {
         <h1 className="col-6 offset-2 text-3xl font-semibold">
           SignUp On Threads
         </h1>
-        {load && <LinearProgress color="inherit" />}
         <br />
         <br />
         <br />
@@ -130,7 +129,7 @@ function SigninForm() {
               className="btn btn-dark"
               onClick={() => handleSignup(event)}
             >
-              Sign-Up
+              {load ? <Loader /> : "Sign-in"}
             </button>
           </form>
         </div>
