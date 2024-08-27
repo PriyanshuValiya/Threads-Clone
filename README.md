@@ -4,11 +4,11 @@
 
 ## Tech-Stack
 
-*Frontend: React, MaterialUI, Tailwind, Bootstrap.
-*Backend: Node, Express, JWT.
-*Database: MongoDB.
-*Cloud Service: MongoAtlas.
-*Other Services: Cloudinary.
+- Frontend: React, MaterialUI, Tailwind, Bootstrap.
+- Backend: Node, Express, JWT.
+- Database: MongoDB.
+- Cloud Service: MongoAtlas.
+- Other Services: Cloudinary.
 
 Project Link: https://threads-b9qr.onrender.com
 
